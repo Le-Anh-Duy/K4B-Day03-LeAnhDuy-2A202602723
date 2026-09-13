@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC01",
+    "type": "direct_query",
+    "question": "Bạn có thể hướng dẫn quy định cơ bản về việc mượn, trả và gia hạn tài liệu trong thư viện không?",
+    "expected_behavior": "Chatbot trả lời trực tiếp dựa trên System Prompt/kiến thức được cung cấp, không cần gọi bất kỳ Tool nào.",
+    "complexity": "Low"
+  },
+  {
+    "id": "TC02",
+    "type": "single_tool_query",
+    "question": "Hãy tra cứu vị trí của cuốn sách 'Introduction to Computer Science' trong thư viện.",
+    "expected_behavior": "Agent nhận diện nhu cầu tra cứu vị trí tài liệu và tự động phát sinh Tool Call phù hợp để tìm kiếm sách, sau đó trả về thông tin vị trí/kệ/phòng nếu có.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC03",
+    "type": "single_tool_query",
+    "question": "Tôi muốn biết hiện tại tôi đang mượn những tài liệu nào và hạn trả của từng tài liệu.",
+    "expected_behavior": "Agent nhận diện nhu cầu tra cứu tình trạng mượn/trả và tự động phát sinh Tool Call phù hợp với thông tin người dùng, sau đó trả về danh sách tài liệu đang mượn và hạn trả.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC04",
+    "type": "multi_step_reasoning",
+    "question": "Tôi đang mượn cuốn 'Database System Concepts'. Hãy kiểm tra hạn trả của cuốn sách và nếu tài liệu đủ điều kiện thì thực hiện gia hạn giúp tôi.",
+    "expected_behavior": "Agent thực hiện chuỗi suy luận ReAct đa bước: trước tiên tra cứu thông tin khoản mượn và hạn trả, sau đó kiểm tra điều kiện gia hạn; nếu đủ điều kiện thì thực hiện Tool Call gia hạn tài liệu và thông báo kết quả.",
+    "complexity": "High"
+  },
+  {
+    "id": "TC05",
+    "type": "edge_case_handling",
+    "question": "Hãy tra cứu tình trạng mượn/trả của tài liệu có mã LIB9999999.",
+    "expected_behavior": "Agent nhận kết quả NOT_FOUND từ Tool và đưa ra phản hồi lịch sự, chính xác rằng không tìm thấy tài liệu, không bịa đặt thông tin về tình trạng mượn/trả.",
+    "complexity": "Medium"
+  }
+]

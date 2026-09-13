@@ -1,29 +1,155 @@
 [
   {
     "step": 1,
-    "query": "Chào bạn, bạn có thể giới thiệu quy chế học vụ cơ bản của Đại học VinUni không?",
+    "query": "Bạn có thể hướng dẫn quy định cơ bản về việc mượn, trả và gia hạn tài liệu trong thư viện không?",
     "action_type": "FINAL_ANSWER",
-    "thought": "Câu hỏi chung về quy chế học vụ, trả lời trực tiếp không cần gọi Tool.",
-    "output": "[Mock Agent Response]: Xin chào! Quy chế học vụ VinUni yêu cầu sinh viên tích lũy tối thiểu 120 tín chỉ và duy trì GPA trên 2.0 để tốt nghiệp.",
-    "latency_ms": 2845.93
+    "thought": "Gemini phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Chào bạn, với tư cách là Trợ lý Quản lý Thư viện tại VinUni, tôi xin chia sẻ các quy định cơ bản về việc mượn, trả và gia hạn tài liệu như sau:\n\n### 1. Quy định mượn tài liệu\n*   **Đối tượng:** Sinh viên, giảng viên và cán bộ nhân viên có thẻ thư viện hợp lệ.\n*   **Số lượng:** Tùy thuộc vào loại tài liệu và đối tượng người dùng, hệ thống sẽ có hạn mức mượn cụ thể.\n*   **Thủ tục:** Bạn cần xuất trình thẻ thư viện (hoặc mã định danh sinh viên) tại quầy lưu thông hoặc sử dụng hệ thống tự phục vụ (nếu có).\n\n### 2. Quy định trả tài liệu\n*   **Thời hạn:** Tài liệu phải được trả đúng hạn ghi trên hệ thống. Bạn có thể kiểm tra hạn trả thông qua tài khoản cá nhân hoặc yêu cầu tôi hỗ trợ tra cứu.\n*   **Địa điểm:** Trả tài liệu tại quầy lưu thông hoặc các hòm trả sách tự động của thư viện.\n*   **Phạt quá hạn:** Việc trả sách muộn có thể dẫn đến phí phạt hoặc tạm khóa quyền mượn sách tùy theo quy định hiện hành của thư viện.\n\n### 3. Quy định gia hạn tài liệu\n*   **Điều kiện:** Tài liệu chỉ được gia hạn nếu:\n    *   Tài liệu đó không có người dùng khác đặt trước (hold).\n    *   Tài liệu chưa quá hạn (hoặc trong khoảng thời gian cho phép gia hạn).\n    *   Bạn chưa đạt đến số lần gia hạn tối đa cho phép.\n*   **Cách thực hiện:** Bạn có thể gia hạn trực tuyến qua cổng thông tin thư viện hoặc nhờ tôi hỗ trợ kiểm tra và thực hiện gia hạn trực tiếp.\n\n---\n**Bạn có muốn tôi hỗ trợ kiểm tra danh sách tài liệu bạn đang mượn hoặc gia hạn tài liệu nào không?** Nếu có, vui lòng cung cấp **Mã sinh viên** của bạn nhé!",
+    "latency_ms": 3811.65
   },
   {
     "step": 1,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Hãy tra cứu vị trí của cuốn sách 'Introduction to Computer Science' trong thư viện.",
     "action_type": "TOOL_EXECUTION",
-    "tool_name": "academic_query",
+    "tool_name": "library_search",
     "arguments": {
-      "student_id": "SV2026001"
+      "title": "Introduction to Computer Science"
     },
-    "observation": {},
-    "latency_ms": 799.12
+    "observation": {
+      "status": "SUCCESS",
+      "search_mode": "EXACT_MATCH",
+      "similarity_score": 1.0,
+      "document_id": "LIB001",
+      "data": {
+        "document_id": "LIB001",
+        "title": "Introduction to Computer Science",
+        "author": "John Smith",
+        "category": "Computer Science",
+        "location": "Thư viện tầng 2 - Kệ A03",
+        "status": "AVAILABLE",
+        "keywords": [
+          "nhập môn khoa học máy tính",
+          "tin học đại cương",
+          "lập trình cơ bản",
+          "computer science",
+          "cs",
+          "john smith"
+        ]
+      },
+      "message": "Tìm thấy tài liệu 'Introduction to Computer Science' (Mã: LIB001) của tác giả John Smith. Vị trí: Thư viện tầng 2 - Kệ A03. Trạng thái: AVAILABLE."
+    },
+    "latency_ms": 3985.03
   },
   {
     "step": 2,
-    "query": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "query": "Hãy tra cứu vị trí của cuốn sách 'Introduction to Computer Science' trong thư viện.",
     "action_type": "FINAL_ANSWER",
-    "thought": "Tổng hợp kết quả từ MCP Server thành công.",
-    "output": "Chưa thể trả lời chi tiết do chưa nhận được dữ liệu từ MCP Server (hãy hoàn thành TODO 2.1).",
-    "latency_ms": 10.0
+    "thought": "Gemini phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Cuốn sách \"Introduction to Computer Science\" của tác giả John Smith hiện đang có sẵn tại thư viện. Bạn có thể tìm thấy sách tại vị trí: **Thư viện tầng 2 - Kệ A03**.",
+    "latency_ms": 2703.6
+  },
+  {
+    "step": 1,
+    "query": "Tôi muốn biết hiện tại tôi đang mượn những tài liệu nào và hạn trả của từng tài liệu.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "borrowed_documents",
+    "arguments": {
+      "student_id": "SV2026001"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "student_id": "SV2026001",
+      "data": [
+        {
+          "document_id": "LIB002",
+          "title": "Database System Concepts",
+          "borrow_date": "2026-09-01",
+          "due_date": "2026-09-15",
+          "renewable": true
+        }
+      ],
+      "message": "Sinh viên SV2026001 đang mượn 1 tài liệu: 'Database System Concepts' (Mã: LIB002, Hạn trả: 2026-09-15, Có thể gia hạn: Có)."
+    },
+    "latency_ms": 4118.62
+  },
+  {
+    "step": 2,
+    "query": "Tôi muốn biết hiện tại tôi đang mượn những tài liệu nào và hạn trả của từng tài liệu.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "Gemini phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Hiện tại, bạn đang mượn 1 tài liệu với thông tin chi tiết như sau:\n\n*   **Tên tài liệu:** Database System Concepts\n*   **Mã tài liệu:** LIB002\n*   **Ngày mượn:** 01/09/2026\n*   **Hạn trả:** 15/09/2026\n*   **Trạng thái:** Có thể gia hạn\n\nNếu bạn cần gia hạn tài liệu này, hãy cho tôi biết nhé!",
+    "latency_ms": 3068.95
+  },
+  {
+    "step": 1,
+    "query": "Tôi đang mượn cuốn 'Database System Concepts'. Hãy kiểm tra hạn trả của cuốn sách và nếu tài liệu đủ điều kiện thì thực hiện gia hạn giúp tôi.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "borrowed_documents",
+    "arguments": {
+      "student_id": "SV2026001"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "student_id": "SV2026001",
+      "data": [
+        {
+          "document_id": "LIB002",
+          "title": "Database System Concepts",
+          "borrow_date": "2026-09-01",
+          "due_date": "2026-09-15",
+          "renewable": true
+        }
+      ],
+      "message": "Sinh viên SV2026001 đang mượn 1 tài liệu: 'Database System Concepts' (Mã: LIB002, Hạn trả: 2026-09-15, Có thể gia hạn: Có)."
+    },
+    "latency_ms": 2747.97
+  },
+  {
+    "step": 2,
+    "query": "Tôi đang mượn cuốn 'Database System Concepts'. Hãy kiểm tra hạn trả của cuốn sách và nếu tài liệu đủ điều kiện thì thực hiện gia hạn giúp tôi.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "renew_document",
+    "arguments": {
+      "student_id": "SV2026001",
+      "document_id": "LIB002"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "student_id": "SV2026001",
+      "document_id": "LIB002",
+      "new_due_date": "2026-09-29",
+      "message": "Gia hạn tài liệu 'LIB002' ('Database System Concepts') thành công. Hạn trả mới là 2026-09-29."
+    },
+    "latency_ms": 2576.0
+  },
+  {
+    "step": 3,
+    "query": "Tôi đang mượn cuốn 'Database System Concepts'. Hãy kiểm tra hạn trả của cuốn sách và nếu tài liệu đủ điều kiện thì thực hiện gia hạn giúp tôi.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "Gemini phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Cuốn sách 'Database System Concepts' (mã LIB002) của bạn đã được gia hạn thành công. Hạn trả mới của tài liệu này là ngày 29/09/2026.",
+    "latency_ms": 2719.36
+  },
+  {
+    "step": 1,
+    "query": "Hãy tra cứu tình trạng mượn/trả của tài liệu có mã LIB9999999.",
+    "action_type": "TOOL_EXECUTION",
+    "tool_name": "library_search",
+    "arguments": {
+      "document_id": "LIB9999999"
+    },
+    "observation": {
+      "status": "NOT_FOUND",
+      "message": "Không tìm thấy tài liệu có mã 'LIB9999999'."
+    },
+    "latency_ms": 1160.91
+  },
+  {
+    "step": 2,
+    "query": "Hãy tra cứu tình trạng mượn/trả của tài liệu có mã LIB9999999.",
+    "action_type": "FINAL_ANSWER",
+    "thought": "Gemini phản hồi trực tiếp bằng văn bản (không cần gọi công cụ).",
+    "output": "Rất tiếc, hệ thống thư viện không tìm thấy tài liệu nào có mã là **LIB9999999**. Bạn vui lòng kiểm tra lại mã tài liệu và thử tìm kiếm lại nhé.",
+    "latency_ms": 1421.89
   }
 ]
