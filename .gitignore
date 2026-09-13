@@ -14,3 +14,7 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# Web UI runtime data
+web/chat_history.json
+docs/trace_waterfall_web.json

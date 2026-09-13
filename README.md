@@ -56,6 +56,41 @@ python src/app.py --all
 
 ---
 
+### Bước 4: (Tuỳ chọn) Mở Web UI để demo trực quan
+
+Ngoài chế độ CLI, repo có sẵn một **Web UI viết bằng React** để demo chức năng chat
+(tương đương `python src/app.py --interactive`) nhưng nhìn thấy trực tiếp vòng lặp ReAct:
+
+```bash
+python src/web_server.py
+```
+
+Trình duyệt sẽ tự mở tại <http://127.0.0.1:7860>.
+
+| Thành phần | Mô tả |
+| --- | --- |
+| **Khung chat** | Hỏi đáp với ReAct Agent, kèm gợi ý câu hỏi lấy từ `config/test_cases.json` |
+| **Panel Tools** | Danh sách Tools MCP Server công bố, mở ra xem đầy đủ JSON Schema từng tham số |
+| **Panel Trace** | Waterfall Thought → Action → Observation theo từng Step, kèm latency (ms) |
+| **Panel Logs** | Toàn bộ console log của Agent, stream **theo thời gian thực** khi đang chạy |
+| **Panel Prompt** | System Prompt đang được nạp cho Agent |
+| **Lịch sử chat** | Nhiều cuộc trò chuyện, tự động lưu ra `web/chat_history.json` |
+
+Mọi panel đều **ẩn/hiện được** bằng 2 nút `☰ Lịch sử` và `🔍 Inspector` trên thanh header,
+và mỗi câu trả lời cũng có phần Trace / Log riêng có thể gập lại.
+
+```bash
+python src/web_server.py --port 8080     # đổi cổng
+python src/web_server.py --no-browser    # không tự mở trình duyệt
+```
+
+> 💡 Web UI **không cần Node.js, không cần `npm install`, không có build step**:
+> React 18 được nạp sẵn từ `web/vendor/`, backend dùng 100% thư viện chuẩn Python (`http.server`).
+> Web UI ghi trace riêng ra `docs/trace_waterfall_web.json` nên **không bao giờ đè** lên
+> `docs/trace_waterfall.json` — artifact dùng để nộp bài của `--all`.
+
+---
+
 ## 🎯 2. BỨC TRANH TỔNG THỂ & MỤC TIÊU DÀI HẠN (NORTH STAR GOAL)
 
 Mục tiêu cốt lõi của Bài Lab này là giúp học viên tự tay phát triển một **Trợ lý Tác tử ReAct (ReAct Agent)** hoàn chỉnh.
@@ -109,8 +144,14 @@ Học viên làm bài lần lượt theo đúng luồng 3 bước tinh giản d�
 │   ├── 📄 prompts.py            <-- 🛡️ System Prompts cho Chatbot và ReAct Agent
 │   ├── 📄 providers.py          <-- 🔌 Multi-Provider LLM Adapter (Gemini/OpenAI/Mock)
 │   ├── 📄 app.py                <-- 🚀 MCP Client & Core Agent App ghép nối ReAct Loop & Trace Log
+│   ├── 📄 web_server.py         <-- 🌐 API server cho Web UI (stdlib http.server, stream SSE)
 │   └── 📁 ai_levels/            <-- 📚 [REFERENCE ONLY] Code mẫu kiến trúc tham khảo (Không sửa/debug)
 │       └── 📄 README.md         <-- ⚠️ Chú thích mã nguồn tham khảo
+│
+├── 📁 web/                      <-- 🌐 WEB UI DEMO CHAT (React, không cần npm/build)
+│   ├── 📄 index.html            <-- 🎨 Khung trang & toàn bộ CSS
+│   ├── 📄 app.js                <-- ⚛️ React App: chat, Tools, Trace, Logs, lịch sử
+│   └── 📁 vendor/               <-- 📦 React 18 + htm bản offline (không cần mạng)
 │
 └── 📁 docs/                     <-- 📚 TÀI LIỆU HƯỚNG DẪN CHUẨN VLEARN CODELAB
     ├── 📄 DANH_SACH_DE_TAI.md    <-- 💡 Gợi ý chủ đề theo Lĩnh vực & Đề tài Mở

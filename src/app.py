@@ -52,11 +52,22 @@ def run_baseline_chatbot(user_query: str, provider):
     response = provider.generate(user_query, system_prompt=CHATBOT_BASELINE_PROMPT)
     print(f"🤖 Chatbot phản hồi:\n{response}")
 
-def run_react_agent(user_query: str, provider, mcp_server: MCPLibraryServer) -> list:
+def run_react_agent(user_query: str, provider, mcp_server: MCPLibraryServer, on_event=None) -> list:
     """Thực thi ReAct: Thought -> Action -> Observation -> tiếp tục hoặc Final Answer."""
     print(f"\n🤖 [REACT AGENT] Câu hỏi: {user_query}")
     step = 0
     trace_logs = []
+
+    def log_trace(entry: dict):
+        """Ghi 1 trace event vào log, đồng thời đẩy ra ngoài qua on_event (nếu có).
+
+        on_event chỉ được Web UI truyền vào để stream trace theo thời gian thực.
+        Ở chế độ CLI, on_event = None nên hành vi giữ nguyên như cũ.
+        """
+        trace_logs.append(entry)
+        if on_event:
+            on_event(entry)
+
     observations = []
     tools_list = mcp_server.list_tools()
 
@@ -95,7 +106,7 @@ def run_react_agent(user_query: str, provider, mcp_server: MCPLibraryServer) -> 
         if llm_response.get("type") == "text":
             final_content = llm_response.get("content", "")
             print(f"🏁 [Final Answer]: {final_content}")
-            trace_logs.append({
+            log_trace({
                 "step": step,
                 "query": user_query,
                 "action_type": "FINAL_ANSWER",
@@ -128,7 +139,7 @@ def run_react_agent(user_query: str, provider, mcp_server: MCPLibraryServer) -> 
                 "result": obs_data
             })
 
-            trace_logs.append({
+            log_trace({
                 "step": step,
                 "query": user_query,
                 "action_type": "TOOL_EXECUTION",
@@ -142,7 +153,7 @@ def run_react_agent(user_query: str, provider, mcp_server: MCPLibraryServer) -> 
             continue
 
         print("⚠️ [REACT AGENT]: LLM trả về loại response không hợp lệ.")
-        trace_logs.append({
+        log_trace({
             "step": step,
             "query": user_query,
             "action_type": "EXECUTION_ERROR",
@@ -153,7 +164,7 @@ def run_react_agent(user_query: str, provider, mcp_server: MCPLibraryServer) -> 
 
     if step >= MAX_ITERATIONS:
         print("\n⚠️ [REACT AGENT] Đã đạt giới hạn số vòng lặp.")
-        trace_logs.append({
+        log_trace({
             "step": step + 1,
             "query": user_query,
             "action_type": "MAX_ITERATIONS_REACHED",
