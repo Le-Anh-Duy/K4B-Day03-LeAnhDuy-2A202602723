@@ -10,10 +10,10 @@
 
 | Tiêu chí Đánh giá | Mức độ (1 - 5) | Giải trình chi tiết lý do chọn điểm |
 | :--- | :---: | :--- |
-| **1. Multi-step Reasoning** | 1 / 5 | Bài toán có yêu cầu chia nhỏ nhiều bước suy luận nối tiếp nhau không? |
-| **2. Tool Interaction** | 5 / 5 | Hệ thống có cần kết nối với MCP Server / Cơ sở dữ liệu bên ngoài không? |
-| **3. Dynamic Decision** | 4 / 5 | Bước tiếp theo có phụ thuộc vào kết quả quan sát bước trước không? |
-| **4. Long Horizon Goal** | 3 / 5 | Hệ thống có phải giữ mục tiêu xuyên suốt qua nhiều lượt xử lý không? |
+| **1. Multi-step Reasoning** | 1 / 5 | Có nhưng không nhiều |
+| **2. Tool Interaction** | 5 / 5 | Có cần kết nối với các tool truy vấn đến database, cần phải giao tiếp với database thư viện |
+| **3. Dynamic Decision** | 4 / 5 | Có, nếu cần mượn 1 cuốn sách cần biết cuốn sách đó nằm ở đâu thì truy vấn vị trí và cần biết xem có còn sách để mượn không |
+| **4. Long Horizon Goal** | 3 / 5 | Trong suốt quy trình cần tìm 1 cuốn sách thì cần giữ mục tiêu tìm sách qua nhiều step |
 | **TỔNG ĐIỂM AGENTIC FIT** | **13 / 20** | *Nếu tổng điểm > 12/20: Bài toán rất phù hợp triển khai Agentic System.* |
 
 ---
