@@ -6,17 +6,24 @@
 <title>ReAct Agent — Trợ lý Thư viện VinUni</title>
 <style>
   :root {
-    --bg: #0e1116;
-    --panel: #151a22;
-    --panel-2: #1b212b;
-    --border: #262e3b;
-    --text: #e6e9ef;
-    --muted: #8b94a7;
-    --accent: #5b8cff;
-    --green: #3ecf8e;
-    --amber: #f0b429;
-    --red: #ff6b6b;
-    --purple: #b07cff;
+    --bg: #f5f6f8;
+    --panel: #ffffff;
+    --panel-2: #f1f3f7;
+    --border: #dfe3ea;
+    --text: #1b2130;
+    --muted: #6a7285;
+    --accent: #2563eb;
+    --green: #0f8a5f;
+    --amber: #b45309;
+    --red: #c2352f;
+    --purple: #6d28d9;
+
+    --code-bg: #f8f9fc;
+    --hover: #eceff4;
+    --scroll-thumb: #c8cdd8;
+    --user-bubble: #e7effd;
+    --user-border: #c4d8f8;
+    --on-accent: #ffffff;
     --radius: 10px;
   }
 
@@ -34,7 +41,7 @@
   button { font: inherit; color: inherit; cursor: pointer; }
 
   ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-thumb { background: #2c3444; border-radius: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
 
   /* ---------------------------------------------------------------- layout */
@@ -84,7 +91,7 @@
     border-radius: 8px; padding: 5px 10px; font-size: 12px; color: var(--muted);
   }
   .toggles button.on { color: var(--text); border-color: var(--accent); }
-  .toggles button:hover { background: #222a36; }
+  .toggles button:hover { background: var(--hover); }
 
   /* --------------------------------------------------------------- sidebar */
 
@@ -106,7 +113,7 @@
   .btn-new {
     width: calc(100% - 24px); margin: 12px;
     padding: 8px; border-radius: 8px;
-    background: var(--accent); border: none; color: #fff; font-weight: 600;
+    background: var(--accent); border: none; color: var(--on-accent); font-weight: 600;
   }
   .btn-new:hover { filter: brightness(1.1); }
 
@@ -127,7 +134,7 @@
     opacity: 0; border-radius: 4px;
   }
   .session:hover .del { opacity: 1; }
-  .session .del:hover { color: var(--red); background: #2a1f24; }
+  .session .del:hover { color: var(--red); background: #fdeaea; }
 
   /* ------------------------------------------------------------------ chat */
 
@@ -147,7 +154,7 @@
     background: var(--panel); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 11px 14px; white-space: pre-wrap; word-wrap: break-word;
   }
-  .msg.user .bubble { background: #1b2739; border-color: #2b3c58; }
+  .msg.user .bubble { background: var(--user-bubble); border-color: var(--user-border); }
 
   .empty {
     max-width: 720px; margin: 8vh auto; text-align: center; color: var(--muted);
@@ -190,11 +197,11 @@
     font-size: 11px; padding: 2px 8px; border-radius: 999px;
     border: 1px solid var(--border); background: var(--panel-2); color: var(--muted);
   }
-  .pill.tool   { color: var(--accent); border-color: #2f4574; }
-  .pill.final  { color: var(--green);  border-color: #235f45; }
-  .pill.error  { color: var(--red);    border-color: #5f2a2a; }
-  .pill.warn   { color: var(--amber);  border-color: #5f4a1c; }
-  .pill.step   { color: var(--purple); border-color: #4a3570; }
+  .pill.tool   { color: var(--accent); border-color: #bcd0f7; background: #eff4fe; }
+  .pill.final  { color: var(--green);  border-color: #aadcc5; background: #edfaf4; }
+  .pill.error  { color: var(--red);    border-color: #f0bcba; background: #fdeeed; }
+  .pill.warn   { color: var(--amber);  border-color: #ecd2a4; background: #fdf6ea; }
+  .pill.step   { color: var(--purple); border-color: #d3c4f5; background: #f5f1fe; }
   .pill.lat    { margin-left: auto; }
 
   .field-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
@@ -203,19 +210,19 @@
   .field-label.obs     { color: var(--green); }
 
   pre.code {
-    margin: 4px 0 0; padding: 8px 10px; background: #0b0e13;
+    margin: 4px 0 0; padding: 8px 10px; background: var(--code-bg);
     border: 1px solid var(--border); border-radius: 6px;
     font: 12px/1.5 "Cascadia Code", Consolas, monospace;
     white-space: pre-wrap; word-break: break-word; overflow-x: auto; max-height: 320px;
   }
 
-  .bar-track { height: 5px; background: #0b0e13; border-radius: 3px; overflow: hidden; margin-top: 5px; }
+  .bar-track { height: 5px; background: var(--hover); border-radius: 3px; overflow: hidden; margin-top: 5px; }
   .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--purple)); }
 
   /* ------------------------------------------------------------------ logs */
 
   .logs {
-    background: #0b0e13; border: 1px solid var(--border); border-radius: 6px;
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px;
     padding: 8px 10px; font: 12px/1.6 "Cascadia Code", Consolas, monospace;
     white-space: pre-wrap; word-break: break-word; overflow-y: auto;
   }
@@ -238,10 +245,10 @@
   }
   .composer textarea:focus { border-color: var(--accent); }
   .composer button.send {
-    background: var(--accent); border: none; color: #fff; font-weight: 600;
+    background: var(--accent); border: none; color: var(--on-accent); font-weight: 600;
     border-radius: 10px; padding: 12px 18px;
   }
-  .composer button.send:disabled { background: #2c3444; color: var(--muted); cursor: not-allowed; }
+  .composer button.send:disabled { background: var(--hover); color: var(--muted); cursor: not-allowed; }
   .hint { max-width: 860px; margin: 8px auto 0; font-size: 11px; color: var(--muted); }
 
   /* --------------------------------------------------------------- tabs */
@@ -277,7 +284,7 @@
 
   .spinner {
     width: 12px; height: 12px; border-radius: 50%;
-    border: 2px solid #2c3444; border-top-color: var(--accent);
+    border: 2px solid var(--hover); border-top-color: var(--accent);
     animation: spin .7s linear infinite; display: inline-block;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -289,7 +296,7 @@
     aside.left, aside.right { display: none; }
     aside.left.float, aside.right.float {
       display: flex; position: fixed; top: 52px; bottom: 0; width: min(88vw, 380px); z-index: 20;
-      box-shadow: 0 0 40px rgba(0,0,0,.6);
+      box-shadow: 0 8px 32px rgba(16, 24, 40, .18);
     }
     aside.left.float { left: 0; }
     aside.right.float { right: 0; }
